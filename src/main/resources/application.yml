@@ -1,0 +1,18 @@
+
+server:
+  port: 8080
+spring:
+  application:
+    name: otus-pro-final
+  docker:
+    compose:
+      enabled: false
+  security:
+    jwt:
+      role:
+        locations:
+          - otus_pro
+
+response:
+  exceptions:
+    needStack: false

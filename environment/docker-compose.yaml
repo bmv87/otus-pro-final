@@ -1,0 +1,20 @@
+include:
+  - docker-compose-infra.yaml
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./environment/Dockerfile.app
+    container_name: otus-final-app
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8585:8585"
+    depends_on:
+      db:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    networks:
+      - otus-final-network
