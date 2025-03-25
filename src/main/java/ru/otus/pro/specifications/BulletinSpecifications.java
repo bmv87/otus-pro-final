@@ -36,6 +36,6 @@ public class BulletinSpecifications {
     }
 
     public static Specification<Bulletin> isActive(LocalDateTime date) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get(Bulletin.Fields.startDate), root.get(Bulletin.Fields.endDate), criteriaBuilder.literal(date));
+        return (root, query, criteriaBuilder) -> criteriaBuilder.between(criteriaBuilder.literal(date),root.get(Bulletin.Fields.startDate), root.get(Bulletin.Fields.endDate));
     }
 }

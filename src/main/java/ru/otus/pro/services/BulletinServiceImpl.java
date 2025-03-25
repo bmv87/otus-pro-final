@@ -43,6 +43,9 @@ public class BulletinServiceImpl implements BulletinService {
         if (StringUtils.hasText(title)) {
             specList.add(BulletinSpecifications.hasTitle(title));
         }
+        if (boardId != null) {
+            specList.add(BulletinSpecifications.hasBoardId(boardId));
+        }
         if (StringUtils.hasText(content)) {
             specList.add(BulletinSpecifications.hasContent(content));
         }
