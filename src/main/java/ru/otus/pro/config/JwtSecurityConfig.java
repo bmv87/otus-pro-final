@@ -20,7 +20,7 @@ import java.util.List;
 @EnableMethodSecurity(jsr250Enabled = true)
 @Configuration
 @ConditionalOnProperty(
-        value="authorization.jwt",
+        value = "authorization.jwt",
         matchIfMissing = true)
 public class JwtSecurityConfig {
     @Bean

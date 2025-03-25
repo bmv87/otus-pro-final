@@ -50,7 +50,7 @@ public class KeycloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
         return resourceRoles.isEmpty()
                 ? Collections.emptySet()
                 : resourceRoles.stream()
-                        .map(r -> new SimpleGrantedAuthority("ROLE_" + r))
-                        .collect(Collectors.toSet());
+                .map(r -> new SimpleGrantedAuthority("ROLE_" + r))
+                .collect(Collectors.toSet());
     }
 }

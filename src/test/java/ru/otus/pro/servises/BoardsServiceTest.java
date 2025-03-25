@@ -9,18 +9,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.jpa.domain.Specification;
 import ru.otus.pro.dto.BoardCreateDTO;
-import ru.otus.pro.dto.BulletinCreateDTO;
-import ru.otus.pro.dto.BulletinUpdateDTO;
-import ru.otus.pro.entities.Bulletin;
 import ru.otus.pro.entities.BulletinBoard;
 import ru.otus.pro.exceptions.NotFoundException;
 import ru.otus.pro.exceptions.ServiceException;
 import ru.otus.pro.exceptions.ValidationException;
 import ru.otus.pro.repositories.BulletinBoardRepository;
-import ru.otus.pro.services.BoardsService;
 import ru.otus.pro.services.BoardsServiceImpl;
 import ru.otus.pro.services.BulletinService;
-import ru.otus.pro.services.BulletinServiceImpl;
 
 import java.util.Optional;
 
@@ -90,7 +85,7 @@ public class BoardsServiceTest {
 
     @Test
     void update_board_saveError() {
-        var id= 1L;
+        var id = 1L;
         var newBoard = new BoardCreateDTO();
         newBoard.setName("New name");
         var savedBoard = new BulletinBoard();
@@ -108,9 +103,10 @@ public class BoardsServiceTest {
         });
         Assertions.assertThat(thrown).isInstanceOf(ServiceException.class);
     }
+
     @Test
     void update_board_success() {
-        var id= 1L;
+        var id = 1L;
         var newBoard = new BoardCreateDTO();
         newBoard.setName("New name");
         var savedBoard = new BulletinBoard();
@@ -152,7 +148,7 @@ public class BoardsServiceTest {
 
     @Test
     void update_board_notFound() {
-        var id= 1L;
+        var id = 1L;
         var newBoard = new BoardCreateDTO();
 
         Mockito.when(bulletinBoardRepository.findById(id))
@@ -166,7 +162,7 @@ public class BoardsServiceTest {
 
     @Test
     void delete_board_linkedItemsExistsError() {
-        var id= 1L;
+        var id = 1L;
         Mockito.when(bulletinService.exists(id))
                 .thenReturn(true);
 

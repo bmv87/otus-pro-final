@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
         scheme = "bearer"
 )
 @ConditionalOnProperty(
-        value="authorization.jwt",
+        value = "authorization.jwt",
         matchIfMissing = true)
 public class OpenApiConfig {
 }

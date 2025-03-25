@@ -66,7 +66,7 @@ public class BoardsServiceImpl implements BoardsService {
 
     @Override
     public long create(String creator, BoardCreateDTO boardCreateDTO) {
-         if(bulletinBoardRepository.exists(BulletinBoardSpecifications.equalName(boardCreateDTO.getName()))){
+        if (bulletinBoardRepository.exists(BulletinBoardSpecifications.equalName(boardCreateDTO.getName()))) {
             throw new ValidationException("Bulletin Board name not unique");
         }
         var now = LocalDateTime.now();
@@ -90,7 +90,7 @@ public class BoardsServiceImpl implements BoardsService {
             List<Specification<BulletinBoard>> specList = new ArrayList<>();
             specList.add(BulletinBoardSpecifications.equalName(boardCreateDTO.getName()));
             specList.add(BulletinBoardSpecifications.notEqualId(id));
-            if(bulletinBoardRepository.exists(SpecificationsHelper.and(specList))){
+            if (bulletinBoardRepository.exists(SpecificationsHelper.and(specList))) {
                 throw new ValidationException("Bulletin Board name not unique");
             }
         }

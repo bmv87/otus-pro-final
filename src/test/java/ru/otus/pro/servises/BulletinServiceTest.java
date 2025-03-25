@@ -80,7 +80,7 @@ public class BulletinServiceTest {
 
     @Test
     void update_bulletin_saveError() {
-        var id= 1L;
+        var id = 1L;
         var newBulletin = new BulletinUpdateDTO();
         var savedBulletin = new Bulletin();
         savedBulletin.setId(1L);
@@ -97,7 +97,7 @@ public class BulletinServiceTest {
 
     @Test
     void update_bulletin_notFound() {
-        var id= 1L;
+        var id = 1L;
         var newBulletin = new BulletinUpdateDTO();
 
         Mockito.when(bulletinRepository.findById(id))
@@ -111,7 +111,7 @@ public class BulletinServiceTest {
 
     @Test
     void getItem_bulletin_notFound() {
-        var id= 1L;
+        var id = 1L;
         Mockito.when(bulletinRepository.findById(id))
                 .thenReturn(Optional.empty());
 
