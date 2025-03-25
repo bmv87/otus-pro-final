@@ -66,8 +66,7 @@ public class BoardsServiceImpl implements BoardsService {
 
     @Override
     public long create(String creator, BoardCreateDTO boardCreateDTO) {
-        //todo: validate unique name
-        if(bulletinBoardRepository.exists(BulletinBoardSpecifications.equalName(boardCreateDTO.getName()))){
+         if(bulletinBoardRepository.exists(BulletinBoardSpecifications.equalName(boardCreateDTO.getName()))){
             throw new ValidationException("Bulletin Board name not unique");
         }
         var now = LocalDateTime.now();
@@ -84,7 +83,6 @@ public class BoardsServiceImpl implements BoardsService {
 
     @Override
     public void update(Long id, BoardCreateDTO boardCreateDTO) {
-        //todo: validate unique name
         var board = bulletinBoardRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(String.format("Board with id %d not found", id)));
 
@@ -108,7 +106,6 @@ public class BoardsServiceImpl implements BoardsService {
 
     @Override
     public void delete(Long id) {
-        //todo: validate linked bulletins/ Preventing Delete if an association exists
         if (bulletinService.exists(id)) {
             throw new ValidationException("Bulletin Board has linked items");
         }
