@@ -18,11 +18,11 @@ import java.time.LocalDateTime;
 public class BulletinCreateDTO {
     @NotNull
     private long boardId;
-    @NotEmpty
+    @NotEmpty(message = "'Title' is required field")
     private String title;
-    @NotEmpty
+    @NotEmpty(message = "'Content' is required field")
     private String content;
-    @Email
+    @Email(message = "Invalid email format")
     private String email;
     private String site;
     @Pattern(regexp = "^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$", message = "Invalid phone format")
