@@ -37,13 +37,13 @@ public class AdminBoardsController {
             summary = "Get extended board info list"
     )
     public Paginated<BoardListItemExtendedDTO> getList(
-            @Parameter(description = "Board name", required = false, schema = @Schema(type = "String"))
+            @Parameter(description = "Board name", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = BoardListItemDTO.BaseFields.name, required = false) String name,
-            @Parameter(description = "Board description", required = false, schema = @Schema(type = "String"))
+            @Parameter(description = "Board description", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = BoardListItemDTO.BaseFields.description, required = false) String description,
-            @Parameter(description = "Board create date start", required = false, schema = @Schema(type = "DateTime"))
+            @Parameter(description = "Board create date start", required = false)
             @RequestParam(name = "createDateStart", required = false) LocalDateTime createDateStart,
-            @Parameter(description = "Board create date end", required = false, schema = @Schema(type = "DateTime"))
+            @Parameter(description = "Board create date end", required = false)
             @RequestParam(name = "createDateEnd", required = false) LocalDateTime createDateEnd,
             @ParameterObject
             @PageableDefault(
@@ -60,7 +60,7 @@ public class AdminBoardsController {
             responses = {
                     @ApiResponse(
                             description = "Success response", responseCode = "200",
-                            content = @Content(mediaType = "application/json", schema = @Schema(type = "long", name = "Board id"))
+                            content = @Content(mediaType = "application/json", schema = @Schema(name = "Board id"))
                     ),
                     @ApiResponse(
                             description = "Validation error", responseCode = "422",
@@ -72,7 +72,6 @@ public class AdminBoardsController {
                     )
             })
     public long create(
-            @Parameter(description = "Authenticated user", required = true, schema = @Schema(implementation = Authentication.class))
             Authentication authentication,
             @Parameter(description = "Board create info", required = true, schema = @Schema(implementation = BoardCreateDTO.class))
             @Valid @RequestBody BoardCreateDTO boardCreateDTO) {
@@ -95,7 +94,7 @@ public class AdminBoardsController {
                     )
             })
     public void update(
-            @Parameter(description = "Board id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Board id", required = true)
             @PathVariable Long id,
             @Parameter(description = "Board update info", required = true, schema = @Schema(implementation = BoardCreateDTO.class))
             @Valid @RequestBody BoardCreateDTO boardCreateDTO) {
@@ -118,7 +117,7 @@ public class AdminBoardsController {
                     )
             })
     public void delete(
-            @Parameter(description = "Board id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Board id", required = true)
             @PathVariable Long id) {
         boardsService.delete(id);
     }

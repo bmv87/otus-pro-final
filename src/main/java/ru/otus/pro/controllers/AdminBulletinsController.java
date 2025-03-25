@@ -38,15 +38,15 @@ public class AdminBulletinsController {
             summary = "Get extended bulletins info list"
     )
     public Paginated<BulletinListItemExtendedDTO> getList(
-            @Parameter(description = "Board id", required = false, schema = @Schema(type = "long"))
+            @Parameter(description = "Board id", required = false)
             @RequestParam(name = BulletinListItemExtendedDTO.BaseFields.boardId, required = false) Long boardId,
-            @Parameter(description = "Bulletin title", required = false, schema = @Schema(type = "String"))
+            @Parameter(description = "Bulletin title", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = BulletinListItemExtendedDTO.BaseFields.title, required = false) String title,
-            @Parameter(description = "Bulletin content", required = false, schema = @Schema(type = "String"))
+            @Parameter(description = "Bulletin content", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = "content", required = false) String content,
-            @Parameter(description = "Bulletin create date start", required = false, schema = @Schema(type = "DateTime"))
+            @Parameter(description = "Bulletin create date start", required = false)
             @RequestParam(name = "createDateStart", required = false) LocalDateTime createDateStart,
-            @Parameter(description = "Bulletin create date end", required = false, schema = @Schema(type = "DateTime"))
+            @Parameter(description = "Bulletin create date end", required = false)
             @RequestParam(name = "createDateEnd", required = false) LocalDateTime createDateEnd,
             @ParameterObject
             @PageableDefault(
@@ -64,7 +64,7 @@ public class AdminBulletinsController {
             responses = {
                     @ApiResponse(
                             description = "Success response", responseCode = "200",
-                            content = @Content(mediaType = "application/json", schema = @Schema(type = "long", name = "Bulletin id"))
+                            content = @Content(mediaType = "application/json", schema = @Schema(name = "Bulletin id"))
                     ),
                     @ApiResponse(
                             description = "Validation error", responseCode = "422",
@@ -76,7 +76,6 @@ public class AdminBulletinsController {
                     )
             })
     public long create(
-            @Parameter(description = "Authenticated user", required = true, schema = @Schema(implementation = Authentication.class))
             Authentication authentication,
             @Parameter(description = "Bulletin create info", required = true, schema = @Schema(implementation = BulletinCreateDTO.class))
             @Valid @RequestBody BulletinCreateDTO bulletinCreateDTO) {
@@ -88,7 +87,7 @@ public class AdminBulletinsController {
             responses = {
                     @ApiResponse(
                             description = "Success response", responseCode = "200",
-                            content = @Content(mediaType = "application/json", schema = @Schema(type = "long", name = "Bulletin id"))
+                            content = @Content(mediaType = "application/json", schema = @Schema(name = "Bulletin id"))
                     ),
                     @ApiResponse(
                             description = "Not found", responseCode = "404",
@@ -104,7 +103,7 @@ public class AdminBulletinsController {
                     )
             })
     public void update(
-            @Parameter(description = "Bulletin id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Bulletin id", required = true)
             @PathVariable Long id,
             @Parameter(description = "Bulletin update info", required = true, schema = @Schema(implementation = BulletinUpdateDTO.class))
             @Valid @RequestBody BulletinUpdateDTO bulletinUpdateDTO) {
@@ -128,7 +127,7 @@ public class AdminBulletinsController {
                     )
             })
     public BulletinExtendedDTO getItem(
-            @Parameter(description = "Bulletin id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Bulletin id", required = true)
             @PathVariable Long id) {
         return bulletinService.getItem(id);
     }
@@ -145,7 +144,7 @@ public class AdminBulletinsController {
                     )
             })
     public void delete(
-            @Parameter(description = "Bulletin id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Bulletin id", required = true)
             @PathVariable Long id) {
         bulletinService.delete(id);
     }

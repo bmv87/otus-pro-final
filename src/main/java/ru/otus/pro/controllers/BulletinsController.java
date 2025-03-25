@@ -34,7 +34,7 @@ public class BulletinsController {
             summary = "Get bulletin list info by ia"
     )
     public Paginated<BulletinListItemDTO> getList(
-            @Parameter(description = "Board id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Board id", required = true)
             @RequestParam(name = BulletinListItemDTO.BaseFields.boardId, required = true) Long boardId,
             @ParameterObject
             @PageableDefault(
@@ -61,7 +61,7 @@ public class BulletinsController {
             }
     )
     public BulletinDTO getItem(
-            @Parameter(description = "Bulletin id", required = true, schema = @Schema(type = "long"))
+            @Parameter(description = "Bulletin id", required = true)
             @PathVariable Long id) {
         return bulletinService.getItem(id);
     }

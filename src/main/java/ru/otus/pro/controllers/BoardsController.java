@@ -32,9 +32,9 @@ public class BoardsController {
             summary = "Get board list info by ia"
     )
     public Paginated<BoardListItemDTO> getList(
-            @Parameter(description = "Board name", required = true, schema = @Schema(type = "String"))
+            @Parameter(description = "Board name", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = BoardListItemDTO.BaseFields.name, required = false) String name,
-            @Parameter(description = "Board description", required = true, schema = @Schema(type = "String"))
+            @Parameter(description = "Board description", required = false, schema = @Schema(type = "string"))
             @RequestParam(name = BoardListItemDTO.BaseFields.description, required = false) String description,
             @ParameterObject
             @PageableDefault(
