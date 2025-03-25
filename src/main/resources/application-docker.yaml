@@ -48,3 +48,9 @@ logging:
 response:
   exceptions:
     needStack: false
+
+authorization:
+  jwt: false
+  basic:
+    user: manager
+    password: 123456

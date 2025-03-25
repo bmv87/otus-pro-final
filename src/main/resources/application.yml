@@ -16,3 +16,6 @@ spring:
 response:
   exceptions:
     needStack: false
+
+authorization:
+  jwt: true
